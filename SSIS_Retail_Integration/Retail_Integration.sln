@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37111.16 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "Retail_Integration", "Retail_Integration.dtproj", "{0595F099-33CB-9E98-88BF-EA050BA695C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0595F099-33CB-9E98-88BF-EA050BA695C3}.Development|Default.ActiveCfg = Development
+		{0595F099-33CB-9E98-88BF-EA050BA695C3}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {18B04816-6790-470F-ADD2-78AB700EFF68}
+	EndGlobalSection
+EndGlobal

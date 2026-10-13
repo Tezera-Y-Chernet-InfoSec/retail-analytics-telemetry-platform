@@ -1,0 +1,1039 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/27/2026 10:31:13 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="GT19"
+  DTS:CreatorName="GT19\Tezera"
+  DTS:DTSID="{0C7BD480-6B20-49BB-9688-6FC44E6A1C7F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Load_store"
+  DTS:PackageType="5"
+  DTS:VersionBuild="73"
+  DTS:VersionGUID="{3E27F336-DAE0-4952-8033-3E5653EF7273}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{ABC11CDC-F216-42A2-88EA-6810B83D405D}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\Tezera\Documents\GitHub_data\telemetry_events.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="event_id"
+              DTS:DTSID="{C3E75DE3-9B0E-4DE9-8AD9-9D27C6D3145A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="timestamp"
+              DTS:DTSID="{A24B089F-2FAA-4F05-B81D-C0995F473D24}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="service"
+              DTS:DTSID="{6FBB8BFF-AD38-4BD0-8C21-0B6B46CDE98F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="event_type"
+              DTS:DTSID="{93E0A94A-BD8E-44E2-BC0E-81DE1FD3CD60}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="latency_ms"
+              DTS:DTSID="{660DD8F3-F5A5-4ED3-B8F2-76E621A6622A}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[GT19\MSSQLSERVER_2022.RetailAnalytics]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5753A5D0-B62F-470A-9F0C-20A46F46A505}"
+      DTS:ObjectName="GT19\MSSQLSERVER_2022.RetailAnalytics">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=GT19\MSSQLSERVER_2022;Initial Catalog=RetailAnalytics;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-ETL_Retail_Daily_Load-{5753A5D0-B62F-470A-9F0C-20A46F46A505}GT19\MSSQLSERVER_2022.RetailAnalytics;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B6AECEE3-8FC9-4734-9D3F-E4322C0C2CEF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FullPath">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9985D206-D75B-45F5-B228-69D489191939}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceFileName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BBD50DA5-A714-4141-A12A-02384513823F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceFilePath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\Tezera\Documents\GitHub_data</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E1DE8151-8707-4F2F-96FA-A202500FAFA6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5753A5D0-B62F-470A-9F0C-20A46F46A505}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE stg.telemetry_events;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{5268AFC0-3C70-4699-A1DE-C6CE49C91C34}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{B74DBF93-5DB2-428F-A3B7-3410A634E7BE}"
+        DTS:ObjectName="{B74DBF93-5DB2-428F-A3B7-3410A634E7BE}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[User::SourceFilePath]</DTS:PropertyExpression>
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="C:\Users\Tezera\Documents\GitHub_data" />
+            <FEFEProperty
+              FileSpec="*telemetry_events*.csv" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{40B3BC9E-191C-42C3-BF7E-C8EEC3B01376}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DFT_Load_Customers_To_Staging"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Inputs[Data Conversion Input].Columns[service]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="service"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].Columns[service]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Inputs[Data Conversion Input].Columns[event_id]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="event_id"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].Columns[event_id]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Inputs[Data Conversion Input].Columns[timestamp]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="timestamp"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].Columns[timestamp]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Inputs[Data Conversion Input].Columns[event_type]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="event_type"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].Columns[event_type]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Inputs[Data Conversion Input].Columns[latency_ms]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="latency_ms"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].Columns[latency_ms]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of service]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="500"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of service]"
+                          name="Copy of service"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].Columns[service]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of event_id]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="500"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of event_id]"
+                          name="Copy of event_id"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].Columns[event_id]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of timestamp]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="500"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of timestamp]"
+                          name="Copy of timestamp"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].Columns[timestamp]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of event_type]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="500"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of event_type]"
+                          name="Copy of event_type"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].Columns[event_type]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of latency_ms]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="500"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of latency_ms]"
+                          name="Copy of latency_ms"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].Columns[latency_ms]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Derived Column.Inputs[Derived Column Input].Columns[Copy of event_type]"
+                          cachedDataType="wstr"
+                          cachedLength="500"
+                          cachedName="Copy of event_type"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of event_type]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Derived Column.Outputs[Derived Column Output].Columns[Copy of event_type]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="500"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Derived Column.Outputs[Derived Column Output].Columns[Copy of event_type]"
+                          name="Copy of event_type"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[TRIM](#{Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of event_type]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">TRIM([Copy of event_type])</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1033"
+                  name="Flat File Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                      connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].Columns[event_id]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[event_id]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].Columns[event_id]"
+                          name="event_id"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].Columns[timestamp]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[timestamp]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].Columns[timestamp]"
+                          name="timestamp"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].Columns[service]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[service]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].Columns[service]"
+                          name="service"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].Columns[event_type]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[event_type]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].Columns[event_type]"
+                          name="event_type"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].Columns[latency_ms]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[latency_ms]"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].Columns[latency_ms]"
+                          name="latency_ms"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[event_id]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="event_id" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[timestamp]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="timestamp" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[service]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="service" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[event_type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="event_type" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[latency_ms]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="latency_ms" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[stg].[telemetry_events]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[GT19\MSSQLSERVER_2022.RetailAnalytics]"
+                      connectionManagerRefId="Package.ConnectionManagers[GT19\MSSQLSERVER_2022.RetailAnalytics]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of event_id]"
+                          cachedDataType="wstr"
+                          cachedLength="500"
+                          cachedName="Copy of event_id"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[event_id]"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of event_id]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of timestamp]"
+                          cachedDataType="wstr"
+                          cachedLength="500"
+                          cachedName="Copy of timestamp"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[timestamp]"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of timestamp]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of service]"
+                          cachedDataType="wstr"
+                          cachedLength="500"
+                          cachedName="Copy of service"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[service]"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of service]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of latency_ms]"
+                          cachedDataType="wstr"
+                          cachedLength="500"
+                          cachedName="Copy of latency_ms"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[latency_ms]"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of latency_ms]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of event_type]"
+                          cachedDataType="wstr"
+                          cachedLength="500"
+                          cachedName="Copy of event_type"
+                          externalMetadataColumnId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[event_type]"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Derived Column.Outputs[Derived Column Output].Columns[Copy of event_type]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[event_id]"
+                          dataType="wstr"
+                          length="100"
+                          name="event_id" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[timestamp]"
+                          dataType="wstr"
+                          length="100"
+                          name="timestamp" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[service]"
+                          dataType="wstr"
+                          length="500"
+                          name="service" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[event_type]"
+                          dataType="wstr"
+                          length="200"
+                          name="event_type" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[latency_ms]"
+                          dataType="wstr"
+                          length="100"
+                          name="latency_ms" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging.Paths[Data Conversion Output]"
+                  endId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Derived Column.Inputs[Derived Column Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging.Paths[Derived Column Output]"
+                  endId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging.Paths[Flat File Source Output]"
+                  endId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{E65482FB-8469-45DB-9ADB-80F0B9658442}"
+          DTS:ObjectName="{E65482FB-8469-45DB-9ADB-80F0B9658442}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::SourceFileName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{C9A403E5-8831-4E16-8616-5537B0809784}"
+      DTS:From="Package\Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Foreach Loop Container" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="164,42.6666666666667"
+          Id="Package\Execute SQL Task"
+          TopLeft="280.624987455085,49.3999976444245" />
+        <NodeLayout
+          Size="241.333333333334,42.6666666666667"
+          Id="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging"
+          TopLeft="10.6666576142114,81.4666604057951" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="277.333333333334,206.666666666667"
+          Size="277.333333333334,250"
+          Id="Package\Foreach Loop Container"
+          TopLeft="228.624990025536,158.249992716313" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="364.958322073644,92.0666643110912">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66.1833284052218"
+              Start="0,0"
+              End="0,58.6833284052218">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.6833284052218" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="172,42.6666666666667"
+          Id="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination"
+          TopLeft="325.624985443429,324.349984533787" />
+        <NodeLayout
+          Size="157.333333333334,42.6666666666667"
+          Id="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Data Conversion"
+          TopLeft="319.374985722826,146.899992995262" />
+        <NodeLayout
+          Size="152,42.6666666666667"
+          Id="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Flat File Source"
+          TopLeft="320.624985666946,38.9999981403351" />
+        <NodeLayout
+          Size="154.666666666667,42.6666666666667"
+          Id="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\Derived Column"
+          TopLeft="328.74998530373,232.049988934994" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging.Paths[Flat File Source Output]"
+          TopLeft="397.333319028219,81.6666648070018">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,65.2333281882606"
+              Start="0,0"
+              End="0,57.7333281882606">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.7333281882606" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging.Paths[Derived Column Output]"
+          TopLeft="408.854152040246,274.716655601661">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49.6333289321264"
+              Start="0,0"
+              End="0,42.1333289321264">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.1333289321264" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging.Paths[Data Conversion Output]"
+          TopLeft="398.041652389492,189.566659661929">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8.04166624757096,42.483329273065"
+              Start="0,0"
+              End="8.04166624757096,34.983329273065">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.2416646365325" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.2416646365325"
+                    Point2="0,21.2416646365325"
+                    Point3="4,21.2416646365325" />
+                  <mssgle:LineSegment
+                    End="4.04166624757096,21.2416646365325" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4.04166624757096,21.2416646365325"
+                    Point2="8.04166624757096,21.2416646365325"
+                    Point3="8.04166624757096,25.2416646365325" />
+                  <mssgle:LineSegment
+                    End="8.04166624757096,34.983329273065" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\DFT_Load_Customers_To_Staging\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
