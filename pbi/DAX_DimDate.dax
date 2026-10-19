@@ -1,0 +1,25 @@
+DimDate = 
+VAR MinDate =
+    MINX (
+        FILTER ( FactSales, NOT ISBLANK ( FactSales[Order_Date] ) ),
+        FactSales[Order_Date]
+    )
+VAR MaxDate =
+    MAXX (
+        FILTER ( FactSales, NOT ISBLANK ( FactSales[Order_Date] ) ),
+        FactSales[Order_Date]
+    )
+VAR StartDate =
+    DATE ( YEAR ( MinDate ), 1, 1 )
+VAR EndDate =
+    DATE ( YEAR ( MaxDate ), 12, 31 )
+RETURN
+    ADDCOLUMNS (
+        CALENDAR ( StartDate, EndDate ),
+        "Year", YEAR ( [Date] ),
+        "Month Number", MONTH ( [Date] ),
+        "Month", FORMAT ( [Date], "MMM" ),
+        "Year Month", FORMAT ( [Date], "yyyy-MM" ),
+        "Month Start", DATE ( YEAR ( [Date] ), MONTH ( [Date] ), 1 ),
+        "Quarter", "Q" & FORMAT ( [Date], "Q" )
+    )

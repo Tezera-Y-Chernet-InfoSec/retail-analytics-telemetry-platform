@@ -1,0 +1,23 @@
+/*
+Retail Analytics & Telemetry Platform
+DAX Measures
+Purpose: Analyze recognized retail sales.
+*/
+
+-- 1. Total Sales
+Total Sales = SUM(('FactSales'[sales_amount]))
+
+-- 2. Total Units Sold
+Unit Sold = SUM('FactSales'[quantity]) 
+
+-- 3. Total Cost
+Total Cost = SUM('FactSales'[product_cost])
+
+-- 4. Gross Profit
+Gross Profit = [Total Sales]-[Total Cost] 
+
+-- 5. Profit Margin
+Profit Margin % = DIVIDE([Gross Profit],[Total Sales],0)
+
+-- 6. Total Orders
+Total Orders = DISTINCTCOUNT('FactSales'[order_id]) 
