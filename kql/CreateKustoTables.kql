@@ -1,0 +1,31 @@
+//Table A — Stores
+
+.create-merge table Stores (
+    store_id: long,
+    store_name: string,
+    region: string
+)
+
+
+//Table B — TelemetryEvents
+
+.create-merge table TelemetryEvents (
+    event_id: long,
+    timestamp: datetime,
+    service: string,
+    event_type: string,
+    latency_ms: long
+)
+
+
+//Table C — SupportTickets
+
+.create-merge table SupportTickets (
+    ticket_id: long,
+    customer_id: long,
+    created_at: datetime,
+    category: string,
+    priority: string,
+    status: string,
+    resolution_hours: real
+)

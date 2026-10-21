@@ -1,0 +1,32 @@
+﻿//Validate ingested data
+
+union
+    (Stores | summarize Rows = count() | extend TableName = "Stores"),
+    (TelemetryEvents | summarize Rows = count() | extend TableName = "TelemetryEvents"),
+    (SupportTickets | summarize Rows = count() | extend TableName = "SupportTickets")
+| project TableName, Rows
+| order by TableName asc
+
+//Telemetry latency by service
+TelemetryEvents
+| summarize
+    EventCount = count(),
+    AverageLatencyMs = round(avg(latency_ms), 2),
+    MaxLatencyMs = max(latency_ms)
+    by service
+| order by AverageLatencyMs desc
+
+//Support tickets by priority and status
+SupportTickets
+| summarize TicketCount = count()
+    by priority, status
+| order by TicketCount desc
+
+//Average resolution time by ticket category
+
+SupportTickets
+| summarize
+    TicketCount = count(),
+    AverageResolutionHours = round(avg(resolution_hours), 2)
+    by category
+| order by AverageResolutionHours desc

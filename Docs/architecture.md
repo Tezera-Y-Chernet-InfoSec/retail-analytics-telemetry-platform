@@ -170,10 +170,3 @@ Before running the project in a new environment:
 - Run the master package and inspect logs, validation outputs, and reconciliation results.
 
 Do not store credentials or secrets in source control.
-
-## 11. Related files
-
-- `../README.md` — project overview, setup, roadmap, and repository guide.
-- `../sql/` — SQL scripts, organized by purpose.
-- `../ssis/` — actual SSIS solution and package files.
-- `images/` — architecture and execution evidence screenshots.
