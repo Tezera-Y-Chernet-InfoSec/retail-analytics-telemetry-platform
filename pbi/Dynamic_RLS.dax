@@ -1,0 +1,9 @@
+VAR CurrentUser = USERPRINCIPALNAME()
+RETURN
+    COUNTROWS(
+        FILTER(
+            UserRegionAccess,
+            UserRegionAccess[UserName] = CurrentUser
+                && UserRegionAccess[Region] = DimStores[region]
+        )
+    ) > 0
