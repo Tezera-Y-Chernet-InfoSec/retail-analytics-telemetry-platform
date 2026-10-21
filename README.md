@@ -1,100 +1,63 @@
 # Retail Analytics & Telemetry Platform
 
-## Project Overview
+An end-to-end analytics platform built with **SQL Server, SSIS, Power BI, and Azure Data Explorer (Kusto)** to automate retail data integration, ensure data quality, deliver business intelligence, and analyze operational telemetry.
 
-This project demonstrates an end-to-end data analytics and data engineering workflow using retail business data and application telemetry.
+## Key Features & Implementation
 
-The project combines:
+- **ETL Pipeline & Orchestration:** Built SSIS workflows to ingest CSV data into SQL Server staging and main tables, orchestrate package execution, and deploy solutions to the SSISDB Catalog.
+- **Automated Scheduling:** Configured SQL Server Agent jobs with recurring, time-based schedules to automate data pipeline execution.
+- **Data Quality & Reconciliation:** Implemented data validation, quality checks, error logging, and source-to-target row-count reconciliation to improve data reliability and traceability.
+- **Dimensional Modeling & BI:** Developed a Power BI semantic model using a star schema and defined table relationships to support interactive reporting and analysis.
+- **DAX Measures & Dashboards:** Created business KPIs for Total Sales, Units Sold, Total Orders, and Profit Margin %, with interactive slicers for exploring performance across relevant dimensions.
+- **Data Access Security:** Implemented Power BI Row-Level Security (RLS) to restrict report data according to user access rules.
+- **Telemetry & Operational Analytics:** Ingested telemetry, store, and support-ticket data into Azure Data Explorer and used KQL to investigate operational patterns and derive insights.
 
-* SQL Server
-* SQL
-* KQL
-* Power BI
-* ETL and data quality validation
-* Azure data architecture concepts
+## Technology Stack
 
-## Business Scenario
+**Data Engineering:** SQL Server, T-SQL, SSIS, SSISDB, SQL Server Agent  
+**Business Intelligence:** Power BI, DAX, Semantic Modeling, Star Schema, Row-Level Security  
+**Telemetry Analytics:** Azure Data Explorer (Kusto), KQL
 
-A fictional retail company wants to understand:
+## Business Value
 
-* Sales performance
-* Customer behavior
-* Product profitability
-* Store performance
-* Customer support activity
-* Application and system telemetry
+Demonstrates an end-to-end approach to building reliable, automated data pipelines and transforming retail and operational data into analytical models and actionable insights. The platform combines data quality controls, business KPI reporting, access security, and telemetry analysis to support data-driven decision-making.
 
-The goal is to transform raw data into reliable analytics and actionable insights.
+## Architectural Overview
 
-## Project Architecture
+The platform follows an end-to-end data integration and analytics architecture, connecting source data ingestion, ETL processing, data quality controls, business intelligence, and operational telemetry analysis.
 
-```text
-CSV Files
-   |
-   v
-SQL Server
-   |
-   +--> Data Validation
-   |
-   +--> Star Schema
-   |
-   v
-Power BI
-   |
-   v
-Business Analytics
+### Data Flow
 
+1. **Source Data:** Retail CSV files containing customer, order, and sales data serve as inputs to the data integration pipeline.
+2. **ETL & Orchestration:** SQL Server Integration Services (SSIS) packages extract and load source data into staging tables, then process and transform data into main tables. Execute Package Tasks coordinate package execution.
+3. **Data Quality & Audit Logging:** SQL validation procedures and data quality checks support data integrity, error logging, and source-to-target row-count reconciliation.
+4. **Deployment & Scheduling:** SSIS packages are deployed to the SSISDB Catalog and automated through scheduled SQL Server Agent jobs.
+5. **Data Modeling & Business Intelligence:** Power BI connects to the prepared SQL Server data, uses a star-schema semantic model, and provides DAX measures, interactive dashboards, slicers, and Row-Level Security (RLS).
+6. **Telemetry Analytics:** Telemetry, store, and support-ticket data are ingested into Azure Data Explorer (Kusto) and queried with KQL to investigate operational patterns and derive insights.
 
-Telemetry Events
-   |
-   v
-Kusto / KQL
-   |
-   +--> Error Analysis
-   +--> Latency Analysis
-   +--> Service Monitoring
-   |
-   v
-Telemetry Insights
-```
+### Architecture at a Glance
 
-## Technologies
+**Retail CSV Sources**  
+↓  
+**SSIS ETL & Package Orchestration**  
+↓  
+**SQL Server Staging Tables**  
+↓  
+**Validation, Error Logging & Reconciliation**  
+↓  
+**SQL Server Main Tables**  
+↓  
+**Power BI Semantic Model & DAX Measures**  
+↓  
+**Interactive Dashboards with Row-Level Security (RLS)**
 
-| Technology | Purpose                          |
-| ---------- | -------------------------------- |
-| SQL Server | Data storage and analytics       |
-| SQL        | Data transformation and analysis |
-| KQL        | Telemetry and log analysis       |
-| Power BI   | Dashboard and visualization      |
-| Python     | Future data analysis/automation  |
-| Azure      | Cloud architecture concepts      |
-| Git/GitHub | Version control and portfolio    |
+**Operational Analytics Path:** Telemetry, store, and support-ticket data → Azure Data Explorer (Kusto) → KQL queries → Operational insights.
 
-## Data
+### Architecture Goals
 
-The project uses synthetic datasets representing:
-
-* Customers
-* Products
-* Stores
-* Orders
-* Order Items
-* Support Tickets
-* Telemetry Events
-
-## Project Goals
-
-1. Load raw CSV data into SQL Server.
-2. Validate data quality and relationships.
-3. Build an analytical data model.
-4. Write SQL analytics queries.
-5. Analyze telemetry using KQL.
-6. Build Power BI dashboards.
-7. Document the ETL and analytics process.
-8. Present the project as a portfolio demonstrating practical data skills.
-
-## Project Status
-
-**Current phase:** Project setup and data ingestion
-
-More analysis, dashboards, KQL queries, and documentation will be added as the project progresses.
+- Automate repeatable data ingestion and package execution.
+- Improve data reliability through validation, error handling, and reconciliation.
+- Separate data preparation from reporting and analysis.
+- Deliver interactive business KPIs through Power BI.
+- Apply role-based data access through Power BI RLS.
+- Analyze operational telemetry independently using Kusto and KQL.
