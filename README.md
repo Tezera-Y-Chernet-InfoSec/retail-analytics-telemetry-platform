@@ -35,6 +35,18 @@ The platform follows an end-to-end data integration and analytics architecture, 
 5. **Data Modeling & Business Intelligence:** Power BI connects to the prepared SQL Server data, uses a star-schema semantic model, and provides DAX measures, interactive dashboards, slicers, and Row-Level Security (RLS).
 6. **Telemetry Analytics:** Telemetry, store, and support-ticket data are ingested into Azure Data Explorer (Kusto) and queried with KQL to investigate operational patterns and derive insights.
 
+## Power BI Sales Overview Dashboard
+
+### Sales Overview: Interactive Dashboard with Filters
+
+![Sales Overview Dashboard](screenshots/11_powerbi_sales_dashboard.png)
+
+## Power BI Data Model (Star Schema)
+
+The Power BI semantic model uses a star-schema design to organize retail data for reporting and analysis. Relationships between fact and dimension tables support interactive filtering and consistent business KPI calculations.
+
+![Power BI Star Schema Data Model](screenshots/10_powerbi_star_schema.png)
+
 ### Architecture at a Glance
 
 **Retail CSV Sources**  
