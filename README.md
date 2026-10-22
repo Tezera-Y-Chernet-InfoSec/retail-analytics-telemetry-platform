@@ -47,6 +47,21 @@ The Power BI semantic model uses a star-schema design to organize retail data fo
 
 ![Power BI Star Schema Data Model](screenshots/10_powerbi_star_schema.png)
 
+## SSIS ETL Pipeline & Orchestration
+
+The SSIS pipeline loads CSV files into staging tables, validates and transforms the data, and merges records into SQL Server main tables. Execute Package Tasks coordinate execution, with logging and scheduled automation supporting reliability.
+
+### Master ETL Package
+
+![Master ETL Package](screenshots/04_master_etl_control_flow.png)
+
+**Additional implementation evidence:**
+
+- [Staging Data Flow](screenshots/13_ETL_csv_to_staging_load.png)
+- [Staging-to-Main Processing](screenshots/05_staging_to_main_load.png)
+- [ETL Logging Results](screenshots/09_etl_run_failed_log.png)
+- [SQL Server Agent Scheduling](screenshots/12_SSIS deployment.png)
+
 ### Architecture at a Glance
 
 **Retail CSV Sources**  
