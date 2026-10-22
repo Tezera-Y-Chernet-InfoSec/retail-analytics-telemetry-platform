@@ -169,4 +169,3 @@ Before running the project in a new environment:
 - Verify the input files and column formats.
 - Run the master package and inspect logs, validation outputs, and reconciliation results.
 
-Do not store credentials or secrets in source control.
