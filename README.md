@@ -226,13 +226,3 @@ Analysis areas include:
 
 Refer to the `kql/` directory for the project's query scripts.
 
-### 11. Repository Structure
-
-retail-analytics-telemetry-platform/
-├── SQL/ # Tables, stored procedures, views, validation
-├── ssis/ # SSIS packages and ETL orchestration
-├── pbi/ # Power BI reports and semantic model assets
-├── kql/ # Kusto queries and telemetry analysis
-├── Docs/ # Architecture and project documentation
-├── screenshots/ # Evidence of implementation and results
-└── README.md
